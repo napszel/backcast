@@ -1,0 +1,53 @@
+https://docs.google.com/spreadsheets/d/1UDJ3lUQnM31Cm6FKmxDuyj_ofbFqO7W9B-HgXxa8obk/edit#gid=0
+
+City			
+id	lon	lat		name
+1	8.55	47.36667	Zurich
+2	19.0402	47.4979		Budapest
+3	19.945	50.0647		Krakow
+
+
+Forecast						
+id	date_taken	date_for	city_id	temp_min	temp_max	weather_description
+1	2020-08-08	2020-08-09	1	22		32		Sunny
+2	2020-08-08	2020-08-10	1	20		25		Rainy
+3	2020-08-08	2020-08-11	1	12		15		Rainy
+4	2020-08-08	2020-08-12	1	0		5		Snowy
+5	2020-08-08	2020-08-13	1	-5		-3.5		Sunny
+6	2020-08-08	2020-08-14	1	-12.4		-12.6		Rainy
+7	2020-08-08	2020-08-15	1	-19.8		-21.7		Rainy
+11	2020-08-09	2020-08-10	1	22		32		Sunny
+12	2020-08-09	2020-08-11	1	20		25		Rainy
+13	2020-08-09	2020-08-12	1	12		15		Rainy
+14	2020-08-09	2020-08-13	1	0		5		Snowy
+15	2020-08-09	2020-08-14	1	-5		-3.5		Sunny
+16	2020-08-09	2020-08-15	1	-10		-12		Snowy
+17	2020-08-09	2020-08-16	1	-15		-20.5		Sunny
+
+
+Daily script:
+cities = Select * from City
+For city in cities:
+  Get the 16 day forecast for city[lon], city[lat]
+  Go through the 8 forcasts:
+     Insert into Forecast (date_taken=now(), date_for=forcast[date], city_id=city[id], temp_min=forecast[min], temp_max=forecast[max], weather_description=forcast[description])
+
+Display script for Zurich for today for past:
+"SELECT city.name, forecast.temp_min, forecast.temp_max, forecast.weather_description
+FROM Forecast
+JOIN City ON city.id=forecast.city_id
+WHERE city.name=""Zurich"" AND date_for=now() and date_taken<now()
+ORDER BY forecast.date_taken asc;"
+
+Display script for current weather in Zurich:
+"SELECT city.name, forecast.temp_min, forecast.temp_max, forecast.weather_description
+FROM Forecast
+JOIN City ON city.id=forecast.city_id
+WHERE city.name=""Zurich"" AND date_for=now() and date_taken=now();"
+
+Display script for forecast weather in Zurich:
+"SELECT city.name, forecast.temp_min, forecast.temp_max, forecast.weather_description
+FROM Forecast
+JOIN City ON city.id=forecast.city_id
+WHERE city.name=""Zurich"" AND date_for>now() and date_taken=now()
+ORDER BY date_for asc;"
