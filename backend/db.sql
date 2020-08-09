@@ -11,7 +11,9 @@ CREATE TABLE Forecast (
 	, temp_min FLOAT
 	, temp_max FLOAT
 	, weather_desc TEXT
+	, weather_icon TEXT
 	, FOREIGN KEY (city_id) REFERENCES City (ROWID)
+	, PRIMARY KEY (date_taken, date_for, city_id)
 );
 
 insert into City (lon, lat, name) VALUES (8.55, 47.36667, "Zurich");

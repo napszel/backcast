@@ -28,7 +28,7 @@ id	date_taken	date_for	city_id	temp_min	temp_max	weather_description
 Daily script:
 cities = Select * from City
 For city in cities:
-  Get the 16 day forecast for city[lon], city[lat]
+  Get the 8 day forecast for city[lon], city[lat]
   Go through the 8 forcasts:
      Insert into Forecast (date_taken=now(), date_for=forcast[date], city_id=city[id], temp_min=forecast[min], temp_max=forecast[max], weather_description=forcast[description])
 
