@@ -14,78 +14,21 @@ dates = cur.fetchall()
 bigtable = {}
 
 # dict for each date_for
-# [
-#'2020-03-13': [
-#    'Budapest': [
-#       {
-#         date_taken: 2020-03-10,
-#         tmp_min: 12,
-#         tmp_max: 34
-#       },
-#       {
-#         date_taken: 2020-03-11,
-#         tmp_min: 12,
-#         tmp_max: 34
-#       },
-#       {
-#         date_taken: 2020-03-12,
-#         tmp_min: 12,
-#         tmp_max: 34
-#       }
-#    ],
-#    'Zurich': [
-#       {
-#         date_taken: 2020-03-10,
-#         tmp_min: 12,
-#         tmp_max: 34
-#       },
-#       {
-#         date_taken: 2020-03-11,
-#         tmp_min: 12,
-#         tmp_max: 34
-#       },
-#       {
-#         date_taken: 2020-03-12,
-#         tmp_min: 12,
-#         tmp_max: 34
-#       }
-#    ],
-#'2020-03-14': [
-#    'Budapest': [
-#       {
-#         date_taken: 2020-03-11,
-#         tmp_min: 12,
-#         tmp_max: 34
-#       },
-#       {
-#         date_taken: 2020-03-12,
-#         tmp_min: 12,
-#         tmp_max: 34
-#       },
-#       {
-#         date_taken: 2020-03-13,
-#         tmp_min: 12,
-#         tmp_max: 34
-#       }
-#    ],
-#    'Zurich': [
-#       {
-#         date_taken: 2020-03-11,
-#         tmp_min: 12,
-#         tmp_max: 34
-#       },
-#       {
-#         date_taken: 2020-03-12,
-#         tmp_min: 12,
-#         tmp_max: 34
-#       },
-#       {
-#         date_taken: 2020-03-13,
-#         tmp_min: 12,
-#         tmp_max: 34
-#       }
-#    ]
-#]
+#    '2020-08-20': {   'Budapest': [   {   'date_taken': '2020-08-13',
+#                                          'temp_max': 44.59,
+#                                          'temp_min': 34.24,
+#                                          'weather_desc': 'Few Clouds',
+#                                          'weather_icon': '02d'}],
+#                      'Krakow': [   {   'date_taken': '2020-08-13',
+#                                        'temp_max': 44.67,
+#                                        'temp_min': 35.52,
+#                                        'weather_desc': 'Overcast Clouds',
+#                                        'weather_icon': '04d'}],
+#                      'Zurich': [   {   'date_taken': '2020-08-13',
+#                                        'temp_max': 33.79,
+#                                        'temp_min': 23.28,
+#                                        'weather_desc': 'Broken Clouds',
+#                                        'weather_icon': '04d'}]}}
 
 for date in dates:
     cur.execute('SELECT DISTINCT city_id, city.name from forecast JOIN city on city.rowid=forecast.city_id WHERE date_for=?;', (date[0],))
