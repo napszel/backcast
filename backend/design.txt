@@ -33,11 +33,9 @@ For city in cities:
      Insert into Forecast (date_taken=now(), date_for=forcast[date], city_id=city[id], temp_min=forecast[min], temp_max=forecast[max], weather_description=forcast[description])
 
 Display script for Zurich for today for past:
-"SELECT city.name, forecast.temp_min, forecast.temp_max, forecast.weather_description
-FROM Forecast
-JOIN City ON city.id=forecast.city_id
-WHERE city.name=""Zurich"" AND date_for=now() and date_taken<now()
-ORDER BY forecast.date_taken asc;"
+SELECT city.name, forecast.temp_min, forecast.temp_max, forecast.weather_description FROM Forecast JOIN City ON city.rowid=forecast.city_id WHERE city.name="Zurich" AND date_for=now() and date_taken<now() ORDER BY forecast.date_taken asc;
+
+SELECT city.name, forecast.temp_min, forecast.temp_max, forecast.weather_desc FROM Forecast JOIN City ON city.rowid=forecast.city_id WHERE city.name="Zurich" AND date_for='2020-08-13' ORDER BY forecast.date_taken asc;
 
 Display script for current weather in Zurich:
 "SELECT city.name, forecast.temp_min, forecast.temp_max, forecast.weather_description
