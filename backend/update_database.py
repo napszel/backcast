@@ -12,7 +12,7 @@ conn.row_factory = sqlite3.Row
 
 api_key=sys.argv[1]
 
-url = "https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&exclude=hourly,minutely&units=metric&appid=%s"
+url = "https://api.openweathermap.org/data/2.5/onecall?lon=%s&lat=%s&exclude=hourly,minutely&units=metric&appid=%s"
 date_taken = datetime.date(datetime.now())
 
 try:
