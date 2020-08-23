@@ -52,7 +52,6 @@ try:
             weather_id = day["weather"][0]["id"]
             weather_icon = icons[str(weather_id)]["icon"]
             if not (weather_id > 699 and weather_id < 800) and not (weather_id > 899 and weather_id < 1000):
-                print(weather_id, weather_icon)
                 weather_icon = 'day-' + weather_icon
             weather_icon = prefix + weather_icon
 
