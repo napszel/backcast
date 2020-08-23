@@ -10,6 +10,10 @@ from datetime import datetime
 conn = sqlite3.connect('../generated/weather.db')
 conn.row_factory = sqlite3.Row
 
+if len(sys.argv) < 2:
+    print("Run it with API key as parameter")
+    sys.exit(1)
+
 api_key=sys.argv[1]
 
 url = "https://api.openweathermap.org/data/2.5/onecall?lon=%s&lat=%s&exclude=hourly,minutely&units=metric&appid=%s"
