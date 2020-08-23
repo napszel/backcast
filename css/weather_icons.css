@@ -32,6 +32,8 @@
   font-style: normal;
   font-weight: normal;
   font-size: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
