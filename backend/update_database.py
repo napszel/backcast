@@ -15,6 +15,11 @@ api_key=sys.argv[1]
 url = "https://api.openweathermap.org/data/2.5/onecall?lon=%s&lat=%s&exclude=hourly,minutely&units=metric&appid=%s"
 date_taken = datetime.date(datetime.now())
 
+# Read weather icons mapping. Downloaded from https://gist.github.com/tbranyen/62d974681dea8ee0caa1
+f = open('icons.json',)
+icons = json.load(f)
+f.close()
+
 try:
     c = conn.cursor()
     
@@ -37,7 +42,7 @@ try:
             temp_min = day["temp"]["min"]
             temp_max = day["temp"]["max"]
             weather_description = day["weather"][0]["description"].title()
-            weather_icon = day["weather"][0]["icon"]
+            weather_icon = icons[str(day["weather"][0]["id"])]["icon"]
 
             next_day_to_insert = [(date_taken, date_for, city_id, temp_min, temp_max, weather_description, weather_icon)]
             c.executemany("INSERT OR IGNORE INTO Forecast (date_taken, date_for, city_id, temp_min, temp_max, weather_desc, weather_icon) VALUES (?, ?, ?, ?, ?, ?, ?)", next_day_to_insert)
