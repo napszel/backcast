@@ -46,7 +46,15 @@ try:
             temp_min = day["temp"]["min"]
             temp_max = day["temp"]["max"]
             weather_description = day["weather"][0]["description"].title()
-            weather_icon = icons[str(day["weather"][0]["id"])]["icon"]
+
+            # weather icon needs data from the icons json and some prefixing to match the css classes
+            prefix = 'wi wi-'
+            weather_id = day["weather"][0]["id"]
+            weather_icon = icons[str(weather_id)]["icon"]
+            if not (weather_id > 699 and weather_id < 800) and not (weather_id > 899 and weather_id < 1000):
+                print(weather_id, weather_icon)
+                weather_icon = 'day-' + weather_icon
+            weather_icon = prefix + weather_icon
 
             next_day_to_insert = [(date_taken, date_for, city_id, temp_min, temp_max, weather_description, weather_icon)]
             c.executemany("INSERT OR IGNORE INTO Forecast (date_taken, date_for, city_id, temp_min, temp_max, weather_desc, weather_icon) VALUES (?, ?, ?, ?, ?, ?, ?)", next_day_to_insert)

@@ -6,6 +6,7 @@ function print_weather_data(today, city) {
     $("#" + city).append(
       "<label>"
 	+ "<b>" + forecasts[i]["date_taken"] + "</b> "
+        + "<i class=\"" + forecasts[i]["weather_icon"] + "\"></i>"
 	+ "Min: " + forecasts[i]["temp_min"] + " "
 	+ "Max: " + forecasts[i]["temp_max"]
 	+ "</label> | " );

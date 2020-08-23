@@ -21,10 +21,10 @@ insert into City (lon, lat, name) VALUES (19.0402, 47.4979, "Budapest");
 insert into City (lon, lat, name) VALUES (19.945, 50.0647, "Krakow");
 
 
-update forecast set weather_icon="cloudy" where weather_desc="Overcast Clouds" or
+update forecast set weather_icon="wi wi-day-cloudy" where weather_desc="Overcast Clouds" or
 weather_desc="Scattered Clouds" or weather_desc="Broken Clouds" or weather_desc="Few Clouds";
 
-update forecast set weather_icon="rain" where weather_desc="Light Rain" or
+update forecast set weather_icon="wi wi-day-rain" where weather_desc="Light Rain" or
 weather_desc="Heavy Intensity Rain" or weather_desc="Moderate Rain";
 
-update forecast set weather_icon="sunny" where weather_desc="Clear Sky";
+update forecast set weather_icon="wi wi-day-sunny" where weather_desc="Clear Sky";
