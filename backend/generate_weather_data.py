@@ -14,21 +14,43 @@ dates = cur.fetchall()
 bigtable = {}
 
 # dict for each date_for
-#    '2020-08-20': {   'Budapest': [   {   'date_taken': '2020-08-13',
-#                                          'temp_max': 44.59,
-#                                          'temp_min': 34.24,
-#                                          'weather_desc': 'Few Clouds',
-#                                          'weather_icon': '02d'}],
-#                      'Krakow': [   {   'date_taken': '2020-08-13',
-#                                        'temp_max': 44.67,
-#                                        'temp_min': 35.52,
-#                                        'weather_desc': 'Overcast Clouds',
-#                                        'weather_icon': '04d'}],
-#                      'Zurich': [   {   'date_taken': '2020-08-13',
-#                                        'temp_max': 33.79,
-#                                        'temp_min': 23.28,
-#                                        'weather_desc': 'Broken Clouds',
-#                                        'weather_icon': '04d'}]}}
+#    '2020-08-20': {
+#       "Budapest":[
+#          {
+#              "date_taken":"2020-08-10",
+#              "temp_min":33.57,
+#              "temp_max":42.3,
+#              "weather_desc":"Broken Clouds",
+#              "weather_icon":"wi wi-day-cloudy"
+#          },
+#          {
+#              "date_taken":"2020-08-11",
+#              "temp_min":36.32,
+#              "temp_max":41.45,
+#              "weather_desc":"Broken Clouds",
+#              "weather_icon":"wi wi-day-cloudy"
+#          }
+#      ],
+#      "Krakow":[
+#          {
+#              "date_taken":"2020-08-10",
+#              "temp_min":33.44,
+#              "temp_max":43.78,
+#              "weather_desc":"Light Rain",
+#              "weather_icon":"wi wi-day-rain"
+#          },
+#          {
+#              "date_taken":"2020-08-11",
+#              "temp_min":38.34,
+#              "temp_max":41.66,
+#              "weather_desc":"Light Rain",
+#              "weather_icon":"wi wi-day-rain"
+#          }
+#      ]
+#    },
+#    '2020-08-21': {
+#     ...
+
 
 for date in dates:
     cur.execute('SELECT DISTINCT city_id, city.name from forecast JOIN city on city.rowid=forecast.city_id WHERE date_for=?;', (date[0],))

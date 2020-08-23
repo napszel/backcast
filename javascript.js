@@ -1,20 +1,23 @@
+function get_weather_data_date_taken(backcast) {
+  return "<div class='backcast_weather'><label class='date'>" + backcast["date_taken"] + "</label>  "
+    + backcast["weather_desc"]
+    + "    <i class=\"" + backcast["weather_icon"] + "\"></i>    "
+    + Math.round(backcast["temp_min"]) + "&#8451; &ndash; "
+    + Math.round(backcast["temp_max"]) + "&#8451;</div>";
+}
 
-function print_weather_data(today, city) {
-  forecasts = weather_data[today][city]
 
-  $("#title").html(city);
+function print_weather_data_date_for_city(date, city) {
+  backcasts = weather_data[date][city]
 
-  $("#weather_data").empty();
-  var i;
-  for (i = 0; i < forecasts.length; i++) {
-    $("#weather_data").append(
-      "<div>"
-	+ "<label class='date'>" + forecasts[i]["date_taken"] + "</label>  "
-        + forecasts[i]["weather_desc"]
-        + "    <i class=\"" + forecasts[i]["weather_icon"] + "\"></i>    "
-	+ Math.round(forecasts[i]["temp_min"]) + "&#8451; &ndash; "
-	+ Math.round(forecasts[i]["temp_max"]) + "&#8451;"
-	+ "</div><br/>" );
+  $("#city_title").html(city + " today");
+  $("#city_weather").html(get_weather_data_date_taken(backcasts[backcasts.length-1]));
+
+  $("#backcasts").empty();
+  var i = backcasts.length - 2;
+  for (i; i > -1; i--) {
+    $("#backcasts").append(
+      get_weather_data_date_taken(backcasts[i]) + "<br/>");
   }
 }
 
@@ -26,17 +29,17 @@ $(document).ready(function() {
 
   today = yyyy + '-' + mm + '-' + dd;
 
-  print_weather_data(today, "Zurich");
+  print_weather_data_date_for_city(today, "Zurich");
 
   $("#zurich").click(function() {
-    print_weather_data(today, "Zurich");
+    print_weather_data_date_for_city(today, "Zurich");
   });
 
   $("#budapest").click(function() {
-    print_weather_data(today, "Budapest");
+    print_weather_data_date_for_city(today, "Budapest");
   });
 
   $("#krakow").click(function() {
-    print_weather_data(today, "Krakow");
+    print_weather_data_date_for_city(today, "Krakow");
   });
 } );
