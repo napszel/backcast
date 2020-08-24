@@ -55,6 +55,16 @@ try:
                 weather_icon = 'day-' + weather_icon
             weather_icon = prefix + weather_icon
 
+            # plus add some colors to them too
+            if "clear" in weather_description:
+                weather_icon = 'yellow ' + weather_icon
+            if "clouds" in weather_description:
+                weather_icon = 'grey ' + weather_icon
+            if "rain" in weather_description:
+                weather_icon = 'blue ' + weather_icon
+            if "snow" in weather_description:
+                weather_icon = 'lightblue ' + weather_icon
+
             next_day_to_insert = [(date_taken, date_for, city_id, temp_min, temp_max, weather_description, weather_icon)]
             c.executemany("INSERT OR IGNORE INTO Forecast (date_taken, date_for, city_id, temp_min, temp_max, weather_desc, weather_icon) VALUES (?, ?, ?, ?, ?, ?, ?)", next_day_to_insert)
 

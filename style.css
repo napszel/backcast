@@ -81,6 +81,22 @@ a {
     text-align: center;
 }
 
+.yellow {
+    color: darkorange;
+}
+
+.grey {
+    color: grey;
+}
+
+.lightblue {
+    color: lightblue;
+}
+
+.blue {
+    color: dodgerblue;
+}
+
 .date {
     font-family: monospace;
     font-weight: bold;

@@ -20,6 +20,7 @@ insert into City (lon, lat, name) VALUES (8.55, 47.36667, "Zurich");
 insert into City (lon, lat, name) VALUES (19.0402, 47.4979, "Budapest");
 insert into City (lon, lat, name) VALUES (19.945, 50.0647, "Krakow");
 
+----
 
 update forecast set weather_icon="wi wi-day-cloudy" where weather_desc="Overcast Clouds" or
 weather_desc="Scattered Clouds" or weather_desc="Broken Clouds" or weather_desc="Few Clouds";
@@ -28,3 +29,11 @@ update forecast set weather_icon="wi wi-day-rain" where weather_desc="Light Rain
 weather_desc="Heavy Intensity Rain" or weather_desc="Moderate Rain";
 
 update forecast set weather_icon="wi wi-day-sunny" where weather_desc="Clear Sky";
+
+----
+
+update forecast set weather_icon="grey wi wi-day-cloudy" where weather_desc like '%clouds%';
+
+update forecast set weather_icon="yellow wi wi-day-sunny" where weather_desc like '%clear%';
+
+update forecast set weather_icon="blue wi wi-day-rain" where weather_desc like '%rain%';
