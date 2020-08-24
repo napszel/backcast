@@ -25,8 +25,10 @@ h2 {
 }
 
 h3 {
-    font-size: 1.6em;
+    font-weight: bold;
+    font-size: 30px;
     text-decoration: none;
+    display: inline-block;
 }
 
 h4 {
@@ -56,6 +58,32 @@ a:hover {
 a {
     text-decoration: none;
     color: #516C00;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 380px;
+  position: absolute;
+  top: 2px;
+  left: 24px;
+  font-style: italic;
+  font-size: 12px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+#questionmark {
+    color: grey;
+    font-size: 20px;
 }
 
 #backcasts {
