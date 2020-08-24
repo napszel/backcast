@@ -8,7 +8,10 @@ function get_weather_data_date_taken(backcast) {
 
 
 function print_weather_data_date_for_city(date, city) {
-  backcasts = weather_data[date][city]
+  if (!(city in weather_data[date])) {
+    city = "Zurich";
+  }
+  backcasts = weather_data[date][city];
 
   $("#city_title").html(city + " today");
   $("#city_weather").html(get_weather_data_date_taken(backcasts[backcasts.length-1]));
@@ -21,25 +24,33 @@ function print_weather_data_date_for_city(date, city) {
   }
 }
 
-$(document).ready(function() {
+function get_today() {
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, '0');
   var mm = String(today.getMonth() + 1).padStart(2, '0');
   var yyyy = today.getFullYear();
+  return yyyy + '-' + mm + '-' + dd;
+}
 
-  today = yyyy + '-' + mm + '-' + dd;
 
-  print_weather_data_date_for_city(today, "Zurich");
+$(document).ready(function() {
+  var startHash = window.location.hash.substring(1);
+  if (!startHash) {
+    startHash = "zurich"
+  }
+
+  var startCity = startHash.charAt(0).toUpperCase() + startHash.slice(1);
+  print_weather_data_date_for_city(get_today(), startCity);
 
   $("#zurich").click(function() {
-    print_weather_data_date_for_city(today, "Zurich");
+    print_weather_data_date_for_city(get_today(), "Zurich");
   });
 
   $("#budapest").click(function() {
-    print_weather_data_date_for_city(today, "Budapest");
+    print_weather_data_date_for_city(get_today(), "Budapest");
   });
 
   $("#krakow").click(function() {
-    print_weather_data_date_for_city(today, "Krakow");
+    print_weather_data_date_for_city(get_today(), "Krakow");
   });
 } );
