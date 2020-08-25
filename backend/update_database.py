@@ -56,13 +56,13 @@ try:
             weather_icon = prefix + weather_icon
 
             # plus add some colors to them too
-            if "clear" in weather_description:
+            if "Clear" in weather_description:
                 weather_icon = 'yellow ' + weather_icon
-            if "clouds" in weather_description:
+            if "Clouds" in weather_description:
                 weather_icon = 'grey ' + weather_icon
-            if "rain" in weather_description:
+            if "Rain" in weather_description:
                 weather_icon = 'blue ' + weather_icon
-            if "snow" in weather_description:
+            if "Snow" in weather_description:
                 weather_icon = 'lightblue ' + weather_icon
 
             next_day_to_insert = [(date_taken, date_for, city_id, temp_min, temp_max, weather_description, weather_icon)]
