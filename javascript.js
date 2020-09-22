@@ -53,4 +53,8 @@ $(document).ready(function() {
   $("#krakow").click(function() {
     print_weather_data_date_for_city(get_today(), "Krakow");
   });
+
+  $("#balatonederics").click(function() {
+    print_weather_data_date_for_city(get_today(), "Balatonederics");
+  });
 } );
