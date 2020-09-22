@@ -32,8 +32,8 @@ update forecast set weather_icon="wi wi-day-sunny" where weather_desc="Clear Sky
 
 ----
 
-update forecast set weather_icon="grey wi wi-day-cloudy" where weather_desc like '%clouds%';
+update forecast set weather_icon="grey wi wi-day-cloudy" where weather_desc like '%Clouds%';
 
-update forecast set weather_icon="yellow wi wi-day-sunny" where weather_desc like '%clear%';
+update forecast set weather_icon="yellow wi wi-day-sunny" where weather_desc like '%Clear%';
 
-update forecast set weather_icon="blue wi wi-day-rain" where weather_desc like '%rain%';
+update forecast set weather_icon="blue wi wi-day-rain" where weather_desc like '%Rain%';
