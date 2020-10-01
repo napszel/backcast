@@ -18,6 +18,7 @@ bigtable = {}
 #       "Budapest":[
 #          {
 #              "date_taken":"2020-08-10",
+#              "date_for":"2020-08-20",
 #              "temp_min":33.57,
 #              "temp_max":42.3,
 #              "weather_desc":"Broken Clouds",
@@ -25,6 +26,7 @@ bigtable = {}
 #          },
 #          {
 #              "date_taken":"2020-08-11",
+#              "date_for":"2020-08-20",
 #              "temp_min":36.32,
 #              "temp_max":41.45,
 #              "weather_desc":"Broken Clouds",
@@ -34,6 +36,7 @@ bigtable = {}
 #      "Krakow":[
 #          {
 #              "date_taken":"2020-08-10",
+#              "date_for":"2020-08-20",
 #              "temp_min":33.44,
 #              "temp_max":43.78,
 #              "weather_desc":"Light Rain",
@@ -41,6 +44,7 @@ bigtable = {}
 #          },
 #          {
 #              "date_taken":"2020-08-11",
+#              "date_for":"2020-08-20",
 #              "temp_min":38.34,
 #              "temp_max":41.66,
 #              "weather_desc":"Light Rain",
@@ -65,6 +69,7 @@ for date in dates:
         for fc in forecasts:
             next_data = {}
             next_data["date_taken"] = fc[0]
+            next_data["date_for"] = fc[1]
             next_data["temp_min"] = fc[3]
             next_data["temp_max"] = fc[4]
             next_data["weather_desc"] = fc[5]

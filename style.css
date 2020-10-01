@@ -133,6 +133,19 @@ a {
     margin-right: 20px;
 }
 
+#casts-wrapper {
+    overflow: hidden;
+}
+
+#backcasts-container {
+    float: left;
+}
+
+#forecasts-container {
+    float: right;
+    overflow: hidden;
+}
+
 #wrapper {
     margin: 0px;
     padding: 0px;

@@ -35,20 +35,35 @@
 	<div id="content">
 
 	  <div id="weather_today">
-	    <h2 id="city_title"></h2>
-	    <div id="city_weather"></div>
+	    <h2 id="city_title"></h2> <!-- filled by js -->
+	    <div id="city_weather"></div> <!-- filled by js -->
 	  </div>
 
-	  <div>
-	    <h3>Backcasts</h3>
-	     <div class="tooltip">
-	       <label id="questionmark">&#65533;</label>
-	       <span class="tooltiptext"> The weather predictions for today from the past 7 days</span>
-	     </div>
-	  </div>
-	  <div id="backcasts">
-	  </div>
-	  
+	  <div id="casts-wrapper">
+
+	    <div id="backcasts-container">
+	      <div>
+		<h3>Backcasts</h3>
+		<div class="tooltip">
+		  <label id="questionmark">&#65533;</label>
+		  <span class="tooltiptext"> The weather predictions for today from the past 7 days</span>
+		</div>
+	      </div>
+	      <!-- filled by js -->
+	      <div id="backcasts">
+	      </div>
+	    </div>
+
+	    <div id="forecasts-container">
+	      <div>
+		<h3>Forecasts</h3>
+	      </div>
+	      <!-- filled by js -->
+	      <div id="forecasts">
+	      </div>
+	    </div>
+
+	  </div> <!-- end casts-wrapper -->
 	</div> <!-- end content -->
       </div> <!-- end page -->
       
