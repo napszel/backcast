@@ -1,6 +1,6 @@
 function get_weather_data_date_taken(backcast) {
   if (backcast) {
-    return "<div class='backcast_weather'><label class='date'>" + backcast["date_taken"] + "</label>  "
+    return "<div><label class='date'>" + backcast["date_taken"] + "</label>  "
       + backcast["weather_desc"]
       + "    <i class=\"" + backcast["weather_icon"] + "\"></i>    "
       + Math.round(backcast["temp_min"]) + "&#8451; &ndash; "
@@ -10,7 +10,7 @@ function get_weather_data_date_taken(backcast) {
 
 function get_weather_data_date_for(forecasts) {
   if (forecasts) {
-    return "<div class='forecast_weather'><label class='date'>" + forecasts["date_for"] + "</label>  "
+    return "<div><label class='date'>" + forecasts["date_for"] + "</label>  "
       + forecasts["weather_desc"]
       + "    <i class=\"" + forecasts["weather_icon"] + "\"></i>    "
       + Math.round(forecasts["temp_min"]) + "&#8451; &ndash; "
@@ -29,9 +29,14 @@ function print_backcasts(backcasts) {
 
 function print_forecasts(date, city) {
   $("#forecasts").empty();
-  tomorrows = weather_data[get_tomorrow()][city]
-  forecast = get_weather_data_date_for(tomorrows[6])
-  $("#forecasts").append(forecast)
+  var j = 7;
+  for (var i = 0; i < 7; i++) {
+    next_day = weather_data[get_future_date(i)][city];
+    console.log(next_day);
+    forecast = get_weather_data_date_for(next_day[j]) + "<br/>";
+    j--;
+    $("#forecasts").append(forecast);
+  }
 }
 
 function print_weather_data_date_for_city(date, city) {
@@ -55,20 +60,20 @@ function date_to_string(date) {
 }
 
 function get_today() {
-  return date_to_string(new Date());
+  return get_future_date(0);
 }
 
-function get_tomorrow() {
-  const tomorrow = new Date()
-  tomorrow.setDate(tomorrow.getDate() + 1)
-  return date_to_string(tomorrow);
+function get_future_date(offset) {
+  const fdate = new Date();
+  fdate.setDate(fdate.getDate() + offset);
+  return date_to_string(fdate);
 }
 
 
 $(document).ready(function() {
   var startHash = window.location.hash.substring(1);
   if (!startHash) {
-    startHash = "zurich"
+    startHash = "zurich";
   }
 
   var startCity = startHash.charAt(0).toUpperCase() + startHash.slice(1);
