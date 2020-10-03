@@ -1,29 +1,20 @@
-function get_weather_data_date_taken(backcast) {
-  if (backcast) {
-    return "<div><label class='date'>" + backcast["date_taken"] + "</label>  "
-      + backcast["weather_desc"]
-      + "    <i class=\"" + backcast["weather_icon"] + "\"></i>    "
-      + Math.round(backcast["temp_min"]) + "&#8451; &ndash; "
-      + Math.round(backcast["temp_max"]) + "&#8451;</div>";
+function get_weather_data(predictions, reference) {
+  if (predictions) {
+    return "<div><label class='date'>" + predictions[reference] + "</label>  "
+      + predictions["weather_desc"]
+      + "    <i class=\"" + predictions["weather_icon"] + "\"></i>    "
+      + Math.round(predictions["temp_min"]) + "&#8451; &ndash; "
+      + Math.round(predictions["temp_max"]) + "&#8451;</div>";
   }
 }
 
-function get_weather_data_date_for(forecasts) {
-  if (forecasts) {
-    return "<div><label class='date'>" + forecasts["date_for"] + "</label>  "
-      + forecasts["weather_desc"]
-      + "    <i class=\"" + forecasts["weather_icon"] + "\"></i>    "
-      + Math.round(forecasts["temp_min"]) + "&#8451; &ndash; "
-      + Math.round(forecasts["temp_max"]) + "&#8451;</div>";
-  }
-}
-
-function print_backcasts(backcasts) {
+function print_backcasts(date, city) {
   $("#backcasts").empty();
+  backcasts = weather_data[date][city];
   var i = backcasts.length - 2;
   for (i; i > -1; i--) {
     $("#backcasts").append(
-      get_weather_data_date_taken(backcasts[i]) + "<br/>");
+      get_weather_data(backcasts[i], "date_taken") + "<br/>");
   }
 }
 
@@ -32,8 +23,7 @@ function print_forecasts(date, city) {
   var j = 7;
   for (var i = 0; i < 7; i++) {
     next_day = weather_data[get_future_date(i)][city];
-    console.log(next_day);
-    forecast = get_weather_data_date_for(next_day[j]) + "<br/>";
+    forecast = get_weather_data(next_day[j], "date_for") + "<br/>";
     j--;
     $("#forecasts").append(forecast);
   }
@@ -43,12 +33,12 @@ function print_weather_data_date_for_city(date, city) {
   if (!(city in weather_data[date])) {
     city = "Zurich";
   }
-  backcasts = weather_data[date][city];
 
   $("#city_title").html(city + " today");
-  $("#city_weather").html(get_weather_data_date_taken(backcasts[backcasts.length-1]));
+  todays = weather_data[date][city];
+  $("#city_weather").html(get_weather_data(todays[todays.length-1]));
 
-  print_backcasts(backcasts);
+  print_backcasts(date, city);
   print_forecasts(date, city);
 }
 
