@@ -20,6 +20,7 @@ insert into City (lon, lat, name) VALUES (8.55, 47.36667, "Zurich");
 insert into City (lon, lat, name) VALUES (19.0402, 47.4979, "Budapest");
 insert into City (lon, lat, name) VALUES (19.945, 50.0647, "Krakow");
 insert into City (lon, lat, name) VALUES (17.383719, 46.802756, "Balatonederics");
+insert into City (lon, lat, name) VALUES (86.9225283, 27.9896397, "MountEverest");
 
 ----
 

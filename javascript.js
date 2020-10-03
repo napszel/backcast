@@ -59,16 +59,19 @@ function get_future_date(offset) {
   return date_to_string(fdate);
 }
 
-
 $(document).ready(function() {
+  // Get the code after # in the url and load that city
   var startHash = window.location.hash.substring(1);
+  // If there's none, load our main city
   if (!startHash) {
     startHash = "zurich";
   }
 
+  // Print today's weather backcast/forecast for the selected city
   var startCity = startHash.charAt(0).toUpperCase() + startHash.slice(1);
   print_weather_data_date_for_city(get_today(), startCity);
 
+  // Add even listeners for each city button
   $("#zurich").click(function() {
     print_weather_data_date_for_city(get_today(), "Zurich");
   });
@@ -83,5 +86,9 @@ $(document).ready(function() {
 
   $("#balatonederics").click(function() {
     print_weather_data_date_for_city(get_today(), "Balatonederics");
+  });
+
+  $("#mounteverest").click(function() {
+    print_weather_data_date_for_city(get_today(), "MountEverest");
   });
 } );
