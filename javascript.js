@@ -36,7 +36,7 @@ function print_weather_data_date_for_city(date, city) {
 
   $("#city_title").html(city + " today");
   todays = weather_data[date][city];
-  $("#city_weather").html(get_weather_data(todays[todays.length-1]));
+  $("#city_weather").html(get_weather_data(todays[todays.length-1], "date_taken"));
 
   print_backcasts(date, city);
   print_forecasts(date, city);
