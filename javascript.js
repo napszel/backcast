@@ -10,7 +10,7 @@ function get_weather_data(predictions, reference) {
 
 function print_backcasts(date, city) {
   $("#backcasts").empty();
-  backcasts = weather_data[date][city];
+  backcasts = weather_data[date][city].backcasts;
   var i = backcasts.length - 2;
   for (i; i > -1; i--) {
     $("#backcasts").append(
@@ -21,7 +21,7 @@ function print_backcasts(date, city) {
 function print_forecasts(date, city) {
   $("#forecasts").empty();
   for (var i = 0; i < 7; i++) {
-    next_day = weather_data[get_future_date(i)][city];
+    next_day = weather_data[get_future_date(i)][city].backcasts;
     forecast = get_weather_data(next_day[next_day.length - 1], "date_for") + "<br/>";
     $("#forecasts").append(forecast);
   }
@@ -29,11 +29,11 @@ function print_forecasts(date, city) {
 
 function print_weather_data_date_for_city(date, city) {
   if (!(city in weather_data[date])) {
-    city = "Zurich";
+    city = "zurich";
   }
 
-  $("#city_title").html(city + " today");
-  todays = weather_data[date][city];
+  $("#city_title").html(weather_data[date][city].display_name + " today");
+  todays = weather_data[date][city].backcasts;
   $("#city_weather").html(get_weather_data(todays[todays.length-1], "date_taken"));
 
   print_backcasts(date, city);
@@ -66,27 +66,27 @@ $(document).ready(function() {
   }
 
   // Print today's weather backcast/forecast for the selected city
-  var startCity = startHash.charAt(0).toUpperCase() + startHash.slice(1);
+  var startCity = startHash.charAt(0) + startHash.slice(1);
   print_weather_data_date_for_city(get_today(), startCity);
 
   // Add even listeners for each city button
   $("#zurich").click(function() {
-    print_weather_data_date_for_city(get_today(), "Zurich");
+    print_weather_data_date_for_city(get_today(), "zurich");
   });
 
   $("#budapest").click(function() {
-    print_weather_data_date_for_city(get_today(), "Budapest");
+    print_weather_data_date_for_city(get_today(), "budapest");
   });
 
   $("#krakow").click(function() {
-    print_weather_data_date_for_city(get_today(), "Krakow");
+    print_weather_data_date_for_city(get_today(), "krakow");
   });
 
   $("#balatonederics").click(function() {
-    print_weather_data_date_for_city(get_today(), "Balatonederics");
+    print_weather_data_date_for_city(get_today(), "balatonederics");
   });
 
   $("#mounteverest").click(function() {
-    print_weather_data_date_for_city(get_today(), "Mounteverest");
+    print_weather_data_date_for_city(get_today(), "mounteverest");
   });
 } );

@@ -15,7 +15,9 @@ bigtable = {}
 
 # dict for each date_for
 #    '2020-08-20': {
-#       "Budapest":[
+#       "budapest": {
+#       "display_name: "Budapest",
+#       "backcastas": [
 #          {
 #              "date_taken":"2020-08-10",
 #              "date_for":"2020-08-20",
@@ -32,8 +34,11 @@ bigtable = {}
 #              "weather_desc":"Broken Clouds",
 #              "weather_icon":"wi wi-day-cloudy"
 #          }
+#        ]
 #      ],
-#      "Krakow":[
+#      "krakow": {
+#      "dispaly_name": "Karków",
+#      "backcasts": [
 #          {
 #              "date_taken":"2020-08-10",
 #              "date_for":"2020-08-20",
@@ -57,11 +62,11 @@ bigtable = {}
 
 
 for date in dates:
-    cur.execute('SELECT DISTINCT city_id, city.name from forecast JOIN city on city.rowid=forecast.city_id WHERE date_for=?;', (date[0],))
+    cur.execute('SELECT DISTINCT city_id, city.name, city.display_name from forecast JOIN city on city.rowid=forecast.city_id WHERE date_for=?;', (date[0],))
     cities = cur.fetchall()
     next_date = {}
     list_of_cities = {}
-    for city_id, city_name in cities:
+    for city_id, city_name, city_display_name in cities:
         cur.execute('SELECT * from forecast WHERE date_for=? AND city_id=? ORDER BY date_taken ASC;', (date[0], city_id))
         next_city = {}
         forecasts = cur.fetchall()
@@ -75,7 +80,9 @@ for date in dates:
             next_data["weather_desc"] = fc[5]
             next_data["weather_icon"] = fc[6]
             list_of_forecasts.append(next_data)
-        list_of_cities[city_name] = list_of_forecasts
+        list_of_cities[city_name] = {}
+        list_of_cities[city_name]["backcasts"] = list_of_forecasts
+        list_of_cities[city_name]["display_name"] = city_display_name
 
     bigtable[date[0]] = list_of_cities
 
