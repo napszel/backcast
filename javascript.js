@@ -20,7 +20,7 @@ function print_backcasts(date, city) {
 
 function print_forecasts(date, city) {
   $("#forecasts").empty();
-  for (var i = 0; i < 7; i++) {
+  for (var i = 1; i < 6; i++) {
     next_day = weather_data[get_future_date(i)][city].backcasts;
     forecast = get_weather_data(next_day[next_day.length - 1], "date_for") + "<br/>";
     $("#forecasts").append(forecast);
