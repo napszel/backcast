@@ -16,7 +16,7 @@ if len(sys.argv) < 2:
 
 api_key=sys.argv[1]
 
-url = "https://api.openweathermap.org/data/2.5/onecall?lon=%s&lat=%s&exclude=hourly,minutely&units=metric&appid=%s"
+url = "https://api.openweathermap.org/data/2.5/forecast?lon=%s&lat=%s&exclude=hourly,minutely&units=metric&appid=%s"
 date_taken = datetime.date(datetime.now())
 
 # Read weather icons mapping. Downloaded from https://gist.github.com/tbranyen/62d974681dea8ee0caa1
@@ -40,11 +40,16 @@ try:
         text_data = response.text        
         json_data = json.loads(text_data)
             
-        fc = json_data["daily"]
+        fc = json_data["list"]
         for day in fc:
+            # The new API give you hourly breakdown... but nobody needs that, so I just take the one at 12
+            hour = datetime.utcfromtimestamp(day["dt"]).strftime('%H')
+            if int(hour) != 12:
+                continue
+
             date_for = datetime.utcfromtimestamp(day["dt"]).strftime('%Y-%m-%d')
-            temp_min = day["temp"]["min"]
-            temp_max = day["temp"]["max"]
+            temp_min = day["main"]["temp_min"]
+            temp_max = day["main"]["temp_max"]
             weather_description = day["weather"][0]["description"].title()
 
             # weather icon needs data from the icons json and some prefixing to match the css classes
